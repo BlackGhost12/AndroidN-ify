@@ -1,105 +1,274 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--suppress AndroidUnknownAttribute -->
-<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-
-    <PreferenceCategory
-        android:title="@string/header_settings">
-
-        <SwitchPreference
-            android:defaultValue="true"
-            android:key="enable_settings_tweaks"
-            android:title="@string/enable_settings"/>
-
-        <SwitchPreference
-            android:defaultValue="false"
-            android:dependency="enable_settings_tweaks"
-            android:key="fix_sound_notif_tile"
-            android:summary="@string/fix_sound_notif_tile"
-            android:title="@string/fix_sound_notif_tile_title"/>
-
-    </PreferenceCategory>
+<PreferenceScreen
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <PreferenceCategory
         android:title="@string/header_tweaks">
 
         <PreferenceScreen
-            android:title="@string/header_recents"
-            android:key="settings_recents">
+            android:key="settings_settings"
+            android:title="@string/header_settings">
 
             <SwitchPreference
                 android:defaultValue="true"
-                android:key="enable_recents_tweaks"
-                android:title="@string/enable_recents"/>
+                android:key="enable_settings_summaries"
+                android:summary="@string/enable_settings_summaries"
+                android:title="@string/enable_settings_summaries_title"/>
 
             <SwitchPreference
                 android:defaultValue="false"
-                android:key="enable_recents_double_tap"
-                android:dependency="enable_recents_tweaks"
-                android:title="@string/enable_recents_double_tap"/>
-
-            <tk.wasdennnoch.androidn_ify.ui.preference.SeekBarPreference
-                interval="10"
-                maximum="1500"
-                minimum="100"
-                monitorBoxEnabled="true"
-                monitorBoxUnit="ms"
-                android:defaultValue="180"
-                android:dependency="enable_recents_double_tap"
-                android:key="double_tap_speed"
-                android:title="@string/double_tap_speed_title"/>
+                android:dependency="enable_settings_summaries"
+                android:key="fix_sound_notif_tile"
+                android:summary="@string/fix_sound_notif_tile"
+                android:title="@string/fix_sound_notif_tile_title"/>
 
             <SwitchPreference
                 android:defaultValue="true"
-                android:key="enable_large_recents"
-                android:dependency="enable_recents_tweaks"
-                android:title="@string/enable_large_recents"/>
+                android:key="enable_n_platlogo"
+                android:title="@string/enable_n_platlogo_title"/>
 
         </PreferenceScreen>
 
 
         <PreferenceScreen
-            android:title="@string/header_notifications">
+            android:key="settings_recents"
+            android:title="@string/header_recents">
 
             <SwitchPreference
                 android:defaultValue="true"
-                android:key="enable_notification_tweaks"
-                android:title="@string/enable_notifications"
-                android:summary="@string/enable_notifications_summ"/>
+                android:key="enable_recents_double_tap"
+                android:summary="@string/enable_recents_double_tap"
+                android:title="@string/enable_recents_double_tap_title"/>
 
-            <SwitchPreference
-                android:defaultValue="false"
-                android:dependency="enable_notification_tweaks"
-                android:key="notification_dark_theme"
-                android:summary="@string/notifications_dark_theme"
-                android:title="@string/notifications_dark_theme_title"/>
+            <tk.wasdennnoch.androidn_ify.ui.preference.SeekBarPreference
+                android:defaultValue="400"
+                android:dependency="enable_recents_double_tap"
+                android:key="double_tap_speed"
+                android:title="@string/double_tap_speed_title"
+                app:interval="10"
+                app:maximum="1500"
+                app:minimum="100"
+                app:monitorBoxEnabled="true"
+                app:monitorBoxUnit="ms"/>
+
+            <ListPreference
+                android:defaultValue="0"
+                android:entries="@array/recents_button_behaviors"
+                android:entryValues="@array/recents_button_behaviors_values"
+                android:key="recents_button_behavior"
+                android:summary="%s"
+                android:title="@string/recents_button_behavior_title"/>
+            <!-- Isn't the "%s" nifty? -->
+
+            <tk.wasdennnoch.androidn_ify.ui.preference.SeekBarPreference
+                android:defaultValue="1000"
+                android:enabled="false"
+                android:key="recents_navigation_delay"
+                android:summary="@string/recents_navigation_delay"
+                android:title="@string/recents_navigation_delay_title"
+                app:interval="10"
+                app:maximum="4000"
+                app:minimum="500"
+                app:monitorBoxEnabled="true"
+                app:monitorBoxUnit="ms"/>
 
             <SwitchPreference
                 android:defaultValue="true"
-                android:dependency="enable_notification_tweaks"
-                android:key="notification_dismiss_button"
-                android:summary="@string/notification_dismiss_button"
-                android:title="@string/notification_dismiss_button_title"/>
+                android:key="enable_large_recents"
+                android:title="@string/enable_large_recents"/>
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="no_recents_image"
+                android:title="@string/no_recents_image"/>
+
+        </PreferenceScreen>
+
+
+        <PreferenceScreen
+            android:key="settings_status_bar_header"
+            android:title="@string/header_status_bar_header">
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="enable_notification_header"
+                android:title="@string/enable_notification_header"/>
 
             <SwitchPreference
                 android:defaultValue="false"
-                android:dependency="enable_notification_tweaks"
-                android:key="notification_allow_load_label_with_pm"
-                android:summary="@string/notification_allow_load_label_with_pm"
-                android:title="@string/notification_allow_load_label_with_pm_title"/>
+                android:dependency="enable_notification_header"
+                android:key="keep_qs_panel_background"
+                android:summary="@string/keep_qs_panel_bg"
+                android:title="@string/keep_qs_panel_bg_title"/>
+
+            <tk.wasdennnoch.androidn_ify.ui.preference.SeekBarPreference
+                android:defaultValue="5"
+                android:dependency="enable_notification_header"
+                android:key="notification_header_qs_tiles_count"
+                android:title="@string/notification_header_qs_tiles_count"
+                app:interval="1"
+                app:maximum="10"
+                app:minimum="3"
+                app:monitorBoxEnabled="true"
+                app:monitorBoxLeadingSpace="true"
+                app:monitorBoxUnit="@string/notification_header_qs_tiles_count_monitor"/>
 
             <SwitchPreference
                 android:defaultValue="false"
-                android:dependency="enable_notification_tweaks"
+                android:dependency="enable_notification_header"
+                android:key="alternative_quick_qs_method"
+                android:summary="@string/alternative_header_qs_method"
+                android:title="@string/alternative_header_qs_method_title"/>
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:dependency="enable_notification_header"
+                android:key="battery_tile_show_percentage"
+                android:title="@string/battery_tile_show_percentage"/>
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:dependency="enable_notification_header"
+                android:key="enable_new_tile_click_behavior"
+                android:summary="@string/enable_new_tile_click_behavior_summary"
+                android:title="@string/enable_new_tile_click_behavior"/>
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="enable_new_tile_click_behavior"
+                android:key="enable_large_first_row"
+                android:summary="@string/enable_large_first_row_summary"
+                android:title="@string/enable_large_first_row"/>
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="enable_notification_header"
+                android:key="smaller_header_clock"
+                android:summary="@string/smaller_header_clock"
+                android:title="@string/smaller_header_clock_title"/>
+
+            <PreferenceScreen
+                android:dependency="enable_notification_header"
+                android:key="settings_hide_header_icons"
+                android:title="@string/hide_icons_title">
+
+                <SwitchPreference
+                    android:defaultValue="false"
+                    android:dependency="enable_notification_header"
+                    android:key="hide_tuner_icon"
+                    android:title="@string/hide_tuner_icon_title"/>
+
+                <SwitchPreference
+                    android:defaultValue="false"
+                    android:dependency="enable_notification_header"
+                    android:key="hide_edit_tiles"
+                    android:title="@string/hide_edit_tiles_title"/>
+
+                <SwitchPreference
+                    android:defaultValue="false"
+                    android:dependency="enable_notification_header"
+                    android:key="hide_carrier_label"
+                    android:title="@string/hide_carrier_label_title"/>
+
+            </PreferenceScreen>
+
+            <SwitchPreference
+                android:defaultValue="false"
                 android:key="notification_full_width_volume"
                 android:summary="@string/notification_full_width_volume"
                 android:title="@string/notification_full_width_volume_title"/>
 
         </PreferenceScreen>
 
+
+        <PreferenceScreen
+            android:key="settings_notifications"
+            android:title="@string/header_notifications">
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="notification_change_style"
+                android:title="@string/notifications_change_style"/>
+
+            <PreferenceScreen
+                android:dependency="notification_change_style"
+                android:key="notification_blacklisted_apps"
+                android:summary="@string/notification_blacklisted_apps"
+                android:title="@string/notification_blacklisted_apps_title">
+                <intent android:action="tk.wasdennnoch.androidn_ify.ui.BlacklistAppActivity"/>
+            </PreferenceScreen>
+
+            <SwitchPreference
+                android:defaultValue="true"
+                android:key="notification_dismiss_button"
+                android:summary="@string/notification_dismiss_button"
+                android:title="@string/notification_dismiss_button_title"/>
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="notification_change_style"
+                android:key="notifications_custom_color"
+                android:title="@string/notifications_custom_color_title"/>
+
+            <com.thebluealliance.spectrum.SpectrumPreference
+                android:defaultValue="0"
+                android:dependency="notifications_custom_color"
+                android:key="notifications_appname_color"
+                android:title="@string/notifications_accent_color_title"
+                app:spectrum_colors="@array/appname_colors"/>
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:dependency="notification_change_style"
+                android:key="notifications_custom_actions_color"
+                android:title="@string/notifications_custom_actions_color_title"/>
+
+            <com.thebluealliance.spectrum.SpectrumPreference
+                android:defaultValue="0"
+                android:dependency="notifications_custom_actions_color"
+                android:key="actions_background_colors"
+                android:title="@string/notifications_actions_color_title"
+                app:spectrum_colors="@array/actions_background_colors"/>
+
+        </PreferenceScreen>
+
+        <PreferenceScreen
+            android:key="settings_lockscreen"
+            android:title="@string/header_lockscreen">
+
+            <SwitchPreference
+                android:defaultValue="false"
+                android:key="enable_emergency_info"
+                android:title="@string/enable_emergency_info_title"/>
+
+            <PreferenceScreen
+                android:dependency="enable_emergency_info"
+                android:key="edit_emergency_info"
+                android:title="@string/edit_emergency_info_title">
+                <intent android:action="tk.wasdennnoch.androidn_ify.ui.EmergencyInfoActivity">
+                    <extra android:name="editable" android:value="true" />
+                </intent>
+            </PreferenceScreen>
+
+        </PreferenceScreen>
+
     </PreferenceCategory>
 
     <PreferenceCategory
+        android:key="settings_app"
         android:title="@string/header_app">
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="app_dark_theme"
+            android:title="@string/app_dark_theme_title"/>
+
+        <com.thebluealliance.spectrum.SpectrumPreference
+            android:defaultValue="@color/colorPrimary"
+            android:key="theme_colorPrimary"
+            android:title="@string/theme_colorPrimary"
+            app:spectrum_colors="@array/theme_colors"/>
 
         <SwitchPreference
             android:defaultValue="false"
@@ -109,9 +278,20 @@
 
         <SwitchPreference
             android:defaultValue="false"
+            android:key="force_english"
+            android:title="@string/force_english_title"/>
+
+        <SwitchPreference
+            android:defaultValue="false"
             android:key="debug_log"
             android:summary="@string/debug_log"
             android:title="@string/debug_log_title"/>
+
+        <SwitchPreference
+            android:defaultValue="true"
+            android:key="check_for_updates"
+            android:summary="@string/check_for_updates"
+            android:title="@string/check_for_updates_title"/>
 
     </PreferenceCategory>
 
